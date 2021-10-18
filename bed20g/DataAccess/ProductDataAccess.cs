@@ -1,5 +1,4 @@
 ﻿using bed20g.DataSource;
-using bed20g.Db;
 using bed20g.Model;
 using System;
 using System.Collections.Generic;
@@ -9,20 +8,17 @@ using System.Threading.Tasks;
 
 namespace bed20g.DataAccess
 {
-    public class EmployeeDataAccess : IDataAccess
+    public class ProductDataAccess : IProductDataAccess
     {
-        private DataSourceBase _dataSource;
-        public EmployeeDataAccess(DataSourceBase dataSource)
+        private readonly ProductDataSourceBase _dataSource;
+        public ProductDataAccess(ProductDataSourceBase dataSource)
         {
             _dataSource = dataSource;
         }
-
-        public List<Employee> GetEmployees()
+        public List<Product> GetProducts()
         {
-            List<Employee> employees = _dataSource.ProvideEmployeeContext();
+            List<Product> employees = _dataSource.ProviderProductContext();
             return employees;
         }
-
-
     }
 }

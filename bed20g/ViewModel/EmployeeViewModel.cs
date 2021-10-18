@@ -10,25 +10,25 @@ namespace bed20g.ViewModel
 {
     class EmployeeViewModel
     {
-        private readonly EmployeeDataAccess _dataAccess;
 
-        public List<Employee> Employees { get; set; }
+        public List<Employee> Employees { get; private set; }
 
-
-        public EmployeeViewModel(EmployeeDataAccess dataAccess)
+        private readonly IDataAccess _dataAccess;
+        public EmployeeViewModel(IDataAccess dataAccess)
         {
+            
             Employees = new List<Employee>();
             _dataAccess = dataAccess;
         }
 
-        public List<Employee> LoadEmployees()
+        public void LoadEmployees()
         {
             var employees = _dataAccess.GetEmployees();
             foreach (var item in employees)
             {
                 Employees.Add(item);
             }
-            return Employees;
+            
         }
 
         

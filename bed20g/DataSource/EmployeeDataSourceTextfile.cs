@@ -1,29 +1,26 @@
 ﻿using bed20g.Model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace bed20g.Db
+namespace bed20g.DataSource
 {
-    public class EmployeeDB
+    public class EmployeeDataSourceTextfile : DataSourceBase
     {
-        public List<Employee> Employees { get; set; }
-
-        public EmployeeDB()
+        public override List<Employee> ProvideEmployeeContext()
         {
-            Employees = new List<Employee>();
-        }
+            Debug.WriteLine("Employees => From Textfile");
 
-        public List<Employee> ProvideEmployeeContext()
-        {
+            //Handles fetching data from "Textfile"
             Employees.Add(new Employee() { Id = Guid.NewGuid(), Name = "Ralph", Email = "rafael@gmail.com" });
             Employees.Add(new Employee() { Id = Guid.NewGuid(), Name = "John", Email = "smith@gmail.com" });
             Employees.Add(new Employee() { Id = Guid.NewGuid(), Name = "Anna", Email = "lindgren@gmail.com" });
             Employees.Add(new Employee() { Id = Guid.NewGuid(), Name = "Ernest", Email = "hemingway@gmail.com" });
+
             return Employees;
         }
-
     }
 }
